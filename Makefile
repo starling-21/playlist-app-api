@@ -9,7 +9,10 @@ debug:
 test:
 	docker-compose run --rm django-server sh -c "python manage.py test"
 
-test_and_lint:
+lint:
+	docker-compose run --rm django-server sh -c "flake8"
+
+both:
 	docker-compose run --rm django-server sh -c "python manage.py test && flake8"
 
 migrate:
