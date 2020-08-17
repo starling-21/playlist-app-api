@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        // # CONFIGURATION to attach debuger to docker container
+        {
+            "name": "Python: Remote Attach",
+            "type": "python",
+            "request": "attach",
+            "port": 5678,
+            "host": "localhost",
+            "pathMappings": [
+              {
+                "localRoot": "${workspaceFolder}/app",
+                "remoteRoot": "/app"
+              }
+            ]
+          }
+
+
+        // # DEFAULT CONFIGURATION ADDED BY DOCKER EXTENSION
+        // {
+        //     "name": "Docker: Python - Django",
+        //     "type": "docker",
+        //     "request": "launch",
+        //     "preLaunchTask": "docker-run: debug",
+        //     "python": {
+        //         "pathMappings": [
+        //             {
+        //                 "localRoot": "${workspaceFolder}/app",
+        //                 "remoteRoot": "/app"
+        //             }
+        //         ],
+        //         "projectType": "django"
+        //     }
+        // }
+    ]
+}
