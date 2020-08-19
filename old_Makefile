@@ -7,13 +7,13 @@ debug:
 	docker-compose run --rm --publish 80:80 app python -m debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:80
 
 test:
-	docker-compose run --rm app sh -c "python manage.py test --noinput"
+	docker-compose run --rm app sh -c "python manage.py test"
 
 lint:
-	docker-compose run --rm app sh -c "flake8 --ignore=E501"
+	docker-compose run --rm app sh -c "flake8"
 
 both:
-	docker-compose run --rm app sh -c "python manage.py test && flake8 --ignore=E501"
+	docker-compose run --rm app sh -c "python manage.py test && flake8"
 
 migrate:
 	docker-compose run --rm --publish 80:80 app sh -c "python manage.py makemigrations core"
