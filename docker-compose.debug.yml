@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-    app:
+    app-dbg:
         build:
             context: .
             dockerfile: Dockerfile
@@ -10,7 +10,21 @@ services:
             - 5678:5678
         volumes:
             - ./app:/app
-        # entrypoint: /bin/sh
-        # command: -c "pip install debugpy -t /tmp && 
-        #     python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 
-        #     manage.py runserver 0.0.0.0:8000"
+        environment:
+            - DB_HOST=db
+            - DB_NAME=app
+            - DB_USER=postgres
+            - DB_PASS=postgres
+        depends_on:
+            - db
+        # command: >
+        #     sh -c "python manage.py wait_for_db && 
+        #             python manage.py migrate &&
+        #             python manage.py runserver 0.0.0.0:8000"
+
+    db:
+        image: postgres:13-alpine
+        environment:
+            - POSTGRES_DB=app
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
