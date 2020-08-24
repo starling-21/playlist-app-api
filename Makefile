@@ -19,13 +19,13 @@ both:
 	docker-compose run --rm app sh -c "python manage.py test && flake8 --ignore=E501"
 
 migrate:
-	docker-compose run --rm --publish 80:80 app sh -c "python manage.py makemigrations && python manage.py migrate"
+	docker-compose run --rm app sh -c "python manage.py makemigrations && python manage.py migrate"
 
 createsuperuser:
 	docker-compose run --rm app sh -c "python manage.py createsuperuser"
 
 
-createapp:
+startapp:
 	docker-compose run --rm app sh -c "python manage.py startapp user"
 
 build:
